@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.main.setting.dao.SettingModelDao" >
+	<resultMap id="SimpleResultMap" type="com.bjgoodwill.insurance.main.setting.model.SettingModel" >
+        <id column="model_id" property="modelId" jdbcType="VARCHAR" />
+		<result column="model_name" property="modelName" jdbcType="VARCHAR" />
+		<result column="interface_mode" property="interfaceMode" jdbcType="VARCHAR" />
+		<result column="interface_name" property="interfaceName" jdbcType="VARCHAR" />
+		<result column="property_name" property="propertyName" jdbcType="VARCHAR" />
+		<result column="method" property="method" jdbcType="VARCHAR" />
+		<result column="request_params" property="requestParams" jdbcType="VARCHAR" />
+		<result column="reutrn_value" property="reutrnValue" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        model_id, model_name, interface_mode, interface_name, property_name, method, request_params, reutrn_value
+    </sql>
+    
+    <select id="getAllSettingModelInfo" resultMap="SimpleResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from ins_setting
+    </select>
+   
+</mapper>

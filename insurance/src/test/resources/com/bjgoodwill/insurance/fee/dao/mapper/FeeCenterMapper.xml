@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.fee.dao.FeeCenterDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.fee.model.FeeCenterModel" >
+        <id column="patientId" property="patientId" jdbcType="VARCHAR" />
+		<result column="medicalNum" property="medicalNum" jdbcType="VARCHAR" />
+		<result column="medicalBillingNo" property="medicalBillingNo" jdbcType="VARCHAR" />
+		<result column="invoiceNo" property="invoiceNo" jdbcType="VARCHAR" />
+		<result column="medicalLnsuranceNo" property="medicalLnsuranceNo" jdbcType="VARCHAR" />
+		<result column="businessNo" property="businessNo" jdbcType="VARCHAR" />
+		<result column="itemCatCount" property="itemCatCount" jdbcType="VARCHAR" />
+		<result column="updatedBy" property="updatedBy" jdbcType="VARCHAR" />
+		<result column="settlementSeqNo" property="settlementSeqNo" jdbcType="VARCHAR" />
+		<result column="settlementTimes" property="settlementTimes" jdbcType="VARCHAR" />
+		
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        patientId, medicalNum, medicalBillingNo, invoiceNo, medicalLnsuranceNo, businessNo, itemCatCount, updatedBy, settlementSeqNo, settlementTimes
+    </sql>
+    
+    <select id="getByInvoiceNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.fee_center_info
+        where invoiceNo = #{invoiceNo,jdbcType=VARCHAR},
+        and patientId = #{patientId,jdbcType=VARCHAR}
+    </select>
+    <select id="getByInvoiceNoToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.view_fee_center_info
+        where patientId = #{arg0,jdbcType=VARCHAR}
+        and invoiceNo = #{arg1,jdbcType=VARCHAR}
+    </select>
+</mapper>

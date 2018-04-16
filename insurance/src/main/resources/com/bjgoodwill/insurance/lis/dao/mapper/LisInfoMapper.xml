@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.lis.dao.LisInfoDao" >
+	<resultMap id="SimpleResultMap" type="com.bjgoodwill.insurance.lis.model.LisInfoModel" >
+        <id column="patientId" property="patientId" jdbcType="VARCHAR" />
+        <result column="labNum" property="labNum" jdbcType="VARCHAR" />
+		<result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+		<result column="categoryCode" property="categoryCode" jdbcType="VARCHAR" />
+		<result column="inspectionItem" property="inspectionItem" jdbcType="VARCHAR" />
+		<result column="barCode" property="barCode" jdbcType="VARCHAR" />
+		<result column="collectionDate" property="collectionDate" jdbcType="VARCHAR" />
+		<result column="sampleType" property="sampleType" jdbcType="VARCHAR" />
+		<result column="departmentCode" property="departmentCode" jdbcType="VARCHAR" />
+		<result column="departmentName" property="departmentName" jdbcType="VARCHAR" />
+		<result column="doctorNo" property="doctorNo" jdbcType="VARCHAR" />
+		<result column="doctorName" property="doctorName" jdbcType="VARCHAR" />
+		<result column="applyDate" property="applyDate" jdbcType="VARCHAR" />
+		<result column="reportDate" property="reportDate" jdbcType="VARCHAR" />
+		<result column="confirmDate" property="confirmDate" jdbcType="VARCHAR" />
+		<result column="sampleNo" property="sampleNo" jdbcType="VARCHAR" />
+		<result column="reportDoctorCode" property="reportDoctorCode" jdbcType="VARCHAR" />
+		<result column="reportDoctorName" property="reportDoctorName" jdbcType="VARCHAR" />
+		<result column="confirmDoctorCode" property="confirmDoctorCode" jdbcType="VARCHAR" />
+		<result column="confirmDoctorName" property="confirmDoctorName" jdbcType="VARCHAR" />
+		<result column="instrna" property="instrna" jdbcType="VARCHAR" />
+		<result column="instrKind" property="instrKind" jdbcType="VARCHAR" />
+		<result column="instrKindName" property="instrKindName" jdbcType="VARCHAR" />
+		<result column="effectiveMark" property="effectiveMark" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="totalRecordInfo" property="totalRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.lis.model.LisInfoModel" >
+       	<id column="patientId" property="patientId" jdbcType="VARCHAR" />
+        <result column="labNum" property="labNum" jdbcType="VARCHAR" />
+        <result column="labNum" property="labNum" jdbcType="VARCHAR" />
+		<result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+		<result column="categoryCode" property="categoryCode" jdbcType="VARCHAR" />
+		<result column="inspectionItem" property="inspectionItem" jdbcType="VARCHAR" />
+		<result column="barCode" property="barCode" jdbcType="VARCHAR" />
+		<result column="collectionDate" property="collectionDate" jdbcType="VARCHAR" />
+		<result column="sampleType" property="sampleType" jdbcType="VARCHAR" />
+		<result column="departmentCode" property="departmentCode" jdbcType="VARCHAR" />
+		<result column="departmentName" property="departmentName" jdbcType="VARCHAR" />
+		<result column="doctorNo" property="doctorNo" jdbcType="VARCHAR" />
+		<result column="doctorName" property="doctorName" jdbcType="VARCHAR" />
+		<result column="applyDate" property="applyDate" jdbcType="VARCHAR" />
+		<result column="reportDate" property="reportDate" jdbcType="VARCHAR" />
+		<result column="confirmDate" property="confirmDate" jdbcType="VARCHAR" />
+		<result column="sampleNo" property="sampleNo" jdbcType="VARCHAR" />
+		<result column="reportDoctorCode" property="reportDoctorCode" jdbcType="VARCHAR" />
+		<result column="reportDoctorName" property="reportDoctorName" jdbcType="VARCHAR" />
+		<result column="confirmDoctorCode" property="confirmDoctorCode" jdbcType="VARCHAR" />
+		<result column="confirmDoctorName" property="confirmDoctorName" jdbcType="VARCHAR" />
+		<result column="instrna" property="instrna" jdbcType="VARCHAR" />
+		<result column="instrKind" property="instrKind" jdbcType="VARCHAR" />
+		<result column="instrKindName" property="instrKindName" jdbcType="VARCHAR" />
+		<result column="effectiveMark" property="effectiveMark" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="totalRecordInfo" property="totalRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        t1.labNum, categoryName, categoryCode, inspectionItem, barCode, collectionDate, sampleType, departmentCode, departmentName, doctorNo, doctorName,applyDate, reportDate,confirmDate, sampleNo, reportDoctorCode, reportDoctorName, confirmDoctorCode, confirmDoctorName, instrna, instrKind, effectiveMark, remark, totalRecordInfo
+    </sql>
+    
+    <select id="getLisInfoByPatientIdToView" resultMap="SimpleResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_lis_info t1,view_lis_pacs_center t2
+        where t1.labNum = t2.labNum
+        and patientId = #{id,jdbcType=VARCHAR}
+    </select>
+    
+</mapper>

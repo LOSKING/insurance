@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.fee.dao.FeeDetailDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.fee.model.FeeDetailModel" >
+        <id column="medicalBillingNo" property="medicalBillingNo" jdbcType="VARCHAR" />
+		<result column="feeDetailNo" property="feeDetailNo" jdbcType="VARCHAR" />
+		<result column="listCat" property="listCat" jdbcType="VARCHAR" />
+		<result column="medicalItemCat" property="medicalItemCat" jdbcType="VARCHAR" />
+		<result column="listCatName" property="listCatName" jdbcType="VARCHAR" />
+		<result column="chargeLevel" property="chargeLevel" jdbcType="VARCHAR" />
+		<result column="projectNo" property="projectNo" jdbcType="VARCHAR" />
+		<result column="projectName" property="projectName" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="VARCHAR" />
+		<result column="size" property="size" jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="VARCHAR" />
+		<result column="visitDepartment" property="visitDepartment" jdbcType="VARCHAR" />
+		<result column="departmentName" property="departmentName" jdbcType="VARCHAR" />
+		<result column="hospitalChargeCode" property="hospitalChargeCode" jdbcType="VARCHAR" />
+		<result column="hospitalChargeName" property="hospitalChargeName" jdbcType="VARCHAR" />
+		<result column="selfAmount" property="selfAmount" jdbcType="VARCHAR" />
+		<result column="selfPayAmount" property="selfPayAmount" jdbcType="VARCHAR" />
+		<result column="departmentCode" property="departmentCode" jdbcType="VARCHAR" />
+		<result column="insurItemCode" property="insurItemCode" jdbcType="VARCHAR" />
+		<result column="insurItemName" property="insurItemName" jdbcType="VARCHAR" />
+		<result column="insuranceCatAdminLevel" property="insuranceCatAdminLevel" jdbcType="VARCHAR" />
+		<result column="prescriptionNo" property="prescriptionNo" jdbcType="VARCHAR" />
+		<result column="prescriptionSerialNo" property="prescriptionSerialNo" jdbcType="VARCHAR" />
+		<result column="projectDosage" property="projectDosage" jdbcType="VARCHAR" />
+		<result column="projectUnit" property="projectUnit" jdbcType="VARCHAR" />
+		<result column="projectSpec" property="projectSpec" jdbcType="VARCHAR" />
+		<result column="projectLocalName" property="projectLocalName" jdbcType="VARCHAR" />
+		<result column="packageSize" property="packageSize" jdbcType="VARCHAR" />
+		<result column="packageUnit" property="packageUnit" jdbcType="VARCHAR" />
+		<result column="minDosageUnit" property="minDosageUnit" jdbcType="VARCHAR" />
+		<result column="normalUsage" property="normalUsage" jdbcType="VARCHAR" />
+		<result column="useUnit" property="useUnit" jdbcType="VARCHAR" />
+		<result column="everyDaySize" property="everyDaySize" jdbcType="VARCHAR" />
+		<result column="useDaySize" property="useDaySize" jdbcType="VARCHAR" />
+		<result column="isSingleRemedy" property="isSingleRemedy" jdbcType="VARCHAR" />
+		<result column="herbalSize" property="herbalSize" jdbcType="VARCHAR" />
+		<result column="drugDeliverType" property="drugDeliverType" jdbcType="VARCHAR" />
+		<result column="projectUnitCode" property="projectUnitCode" jdbcType="VARCHAR" />
+		<result column="drugSpecNo" property="drugSpecNo" jdbcType="VARCHAR" />
+		<result column="drugSpecLocal" property="drugSpecLocal" jdbcType="VARCHAR" />
+		<result column="drugSpecSize" property="drugSpecSize" jdbcType="VARCHAR" />
+		<result column="doctorId" property="doctorId" jdbcType="VARCHAR" />
+		<result column="doctorName" property="doctorName" jdbcType="VARCHAR" />
+		<result column="doctorNo" property="doctorNo" jdbcType="VARCHAR" />
+		<result column="constituent" property="constituent" jdbcType="VARCHAR" />
+		<result column="doctorFunction" property="doctorFunction" jdbcType="VARCHAR" />
+		<result column="taboo" property="taboo" jdbcType="VARCHAR" />
+		<result column="isPrescription" property="isPrescription" jdbcType="VARCHAR" />
+		<result column="isSeriousDrugs" property="isSeriousDrugs" jdbcType="VARCHAR" />
+		<result column="seriousDrugs" property="seriousDrugs" jdbcType="VARCHAR" />
+		<result column="drugFlag" property="drugFlag" jdbcType="VARCHAR" />
+		<result column="chineseMedicineNo" property="chineseMedicineNo" jdbcType="VARCHAR" />
+		<result column="registerNo" property="registerNo" jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="projectEnglishName" property="projectEnglishName" jdbcType="VARCHAR" />
+		<result column="insurantInnerOut" property="insurantInnerOut" jdbcType="VARCHAR" />
+		<result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+		<result column="hosBearMoney" property="hosBearMoney" jdbcType="VARCHAR" />
+		<result column="extraRecipeFlg" property="extraRecipeFlg" jdbcType="VARCHAR" />
+		<result column="examinationResult" property="examinationResult" jdbcType="VARCHAR" />
+		<result column="referenceRanges" property="referenceRanges" jdbcType="VARCHAR" />
+		<result column="examinationHint" property="examinationHint" jdbcType="VARCHAR" />
+		<result column="medlimitedPrice" property="medlimitedPrice" jdbcType="VARCHAR" />
+		<result column="totalSelfFundFlag" property="totalSelfFundFlag" jdbcType="VARCHAR" />
+		<result column="directions" property="directions" jdbcType="VARCHAR" />
+		<result column="updateBy" property="updateBy" jdbcType="VARCHAR" />
+		
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        medicalBillingNo, feeDetailNo, listCat,medicalItemCat,listCatName,chargeLevel, projectNo, projectName,
+         price, size,amount,visitDepartment,departmentName,hospitalChargeCode,hospitalChargeName,selfAmount,selfPayAmount,
+         departmentCode,insurItemCode,insurItemName,insuranceCatAdminLevel,prescriptionNo,prescriptionSerialNo,projectDosage,
+         projectUnit,projectSpec,projectLocalName,packageSize,packageUnit,minDosageUnit,normalUsage,useUnit,everyDaySize,
+         useDaySize,isSingleRemedy,herbalSize,drugDeliverType,projectUnitCode,drugSpecNo,drugSpecLocal,drugSpecSize,doctorId,
+         doctorName,doctorNo,constituent,doctorFunction,taboo,isPrescription,isSeriousDrugs,seriousDrugs,drugFlag,chineseMedicineNo,
+         registerNo,brand,projectEnglishName,insurantInnerOut,manufacturer,hosBearMoney,extraRecipeFlg,examinationResult,
+         referenceRanges,examinationHint,selfPayRatio,medlimitedPrice,totalSelfFundFlag,directions,updateBy
+    </sql>
+    
+    <select id="getByMedicalBillingNo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.fee_detail_info
+        where medicalBillingNo = #{medicalBillingNo,jdbcType=VARCHAR}
+    </select>
+     <select id="getByMedicalBillingNoToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.view_fee_detail_info
+        where medicalBillingNo in (
+              select medicalBillingNo 
+              from hos_data.view_fee_center_info 
+              where invoiceNo = #{invoiceNo,jdbcType=VARCHAR}
+        )
+    </select>
+</mapper>

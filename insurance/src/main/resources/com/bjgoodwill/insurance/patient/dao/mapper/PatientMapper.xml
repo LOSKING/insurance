@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.patient.dao.PatientDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.patient.model.PatientModel" >
+        <id column="patientId" property="patientId" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="VARCHAR" />
+		<result column="ageUnit" property="ageUnit" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+		<result column="certType" property="certType" jdbcType="VARCHAR" />
+		<result column="certNo" property="certNo" jdbcType="VARCHAR" />
+		<result column="race" property="race" jdbcType="VARCHAR" />
+		<result column="areaCode" property="areaCode" jdbcType="VARCHAR" />
+		<result column="areaName" property="areaName" jdbcType="VARCHAR" />
+		<result column="homeAddress" property="homeAddress" jdbcType="VARCHAR" />
+		<result column="companyName" property="companyName" jdbcType="VARCHAR" />
+		<result column="phoneNum" property="phoneNum" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="linkmanName" property="linkmanName" jdbcType="VARCHAR" />
+		<result column="relationshipOfPatient" property="relationshipOfPatient" jdbcType="VARCHAR" />
+		<result column="linkmanMobile" property="linkmanMobile" jdbcType="VARCHAR" />
+		<result column="guardianName" property="guardianName" jdbcType="VARCHAR" />
+		<result column="guardianGender" property="guardianGender" jdbcType="VARCHAR" />
+		<result column="guardianBirth" property="guardianBirth" jdbcType="VARCHAR" />
+		<result column="linkmanIdType" property="linkmanIdType" jdbcType="VARCHAR" />
+		<result column="linkmanIdNo" property="linkmanIdNo" jdbcType="VARCHAR" />
+		<result column="linkmanBirthday" property="linkmanBirthday" jdbcType="VARCHAR" />
+		<result column="linkmanGender" property="linkmanGender" jdbcType="VARCHAR" />
+		<result column="socialNum" property="socialNum" jdbcType="VARCHAR" />
+		<result column="isInSocialSecurityFlg" property="isInSocialSecurityFlg" jdbcType="VARCHAR" />
+		<result column="clientStatus" property="clientStatus" jdbcType="VARCHAR" />
+		<result column="socialSecurityNm" property="socialSecurityNm" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        patientId, name, age, ageUnit, gender, birthday, certType, certNo, race, areaCode, areaName, homeAddress, companyName, phoneNum, email, linkmanName, relationshipOfPatient, linkmanMobile, guardianName, guardianGender, guardianBirth, linkmanIdType, linkmanIdNo, linkmanBirthday, linkmanGender, socialNum, isInSocialSecurityFlg, clientStatus, socialSecurityNm
+    </sql>
+    
+    <select id="getByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_patient
+        where patientId = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="getHisDataByView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_patient
+        where patientId = #{patientId,jdbcType=VARCHAR}
+    </select>
+</mapper>

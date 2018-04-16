@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.main.dic.dao.DicRlatDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.main.dic.model.DicRlatModel" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="code_ins" property="codeIns" jdbcType="VARCHAR" />
+		<result column="name_ins" property="nameIns" jdbcType="VARCHAR" />
+		<result column="code_hosp" property="codeHosp" jdbcType="VARCHAR" />
+		<result column="name_hosp" property="nameHosp" jdbcType="VARCHAR" />
+		<result column="ins_code" property="insCode" jdbcType="VARCHAR" />
+		<result column="ins_name" property="insName" jdbcType="VARCHAR" />
+		<result column="dic_type_id" property="dicTypeId" jdbcType="VARCHAR" />
+		<result column="dic_type_name" property="dicTypeName" jdbcType="VARCHAR" />
+		<result column="create_time" property="creatTime" jdbcType="VARCHAR" />
+		<result column="oper_id" property="operId" jdbcType="VARCHAR" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, code_ins, name_ins, code_hosp, name_hosp, ins_code, ins_name, dic_type_id,dic_type_name,create_time,oper_id,comment
+    </sql>
+    
+    <select id="getDicRlat" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from ins_dic_rlat
+        where is_valid = "1"
+        and ins_code =  #{arg0,jdbcType=VARCHAR}
+        and dic_type_id = #{arg1,jdbcType=VARCHAR}
+        and code_hosp = #{arg2,jdbcType=VARCHAR}
+    </select>
+    
+ 
+   
+</mapper>

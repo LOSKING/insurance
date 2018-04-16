@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.hospitalized.dao.HospitalizedDao">
+    <resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.hospitalized.model.HospitalizedModel" >
+      <result  column="medicalNum" property="medicalNum" jdbcType="VARCHAR"/>
+      <result  column="patientId" property="patientId" jdbcType="VARCHAR"/>
+      <result  column="inHospitalNum" property="inHospitalNum" jdbcType="VARCHAR"/>
+      <result  column="clinicDate" property="clinicDate" jdbcType="VARCHAR"/>
+      <result  column="admissionDate" property="admissionDate" jdbcType="VARCHAR"/>
+      <result  column="dischargeTime" property="dischargeTime" jdbcType="VARCHAR"/>
+      <result  column="hospitalizationDays" property="hospitalizationDays" jdbcType="VARCHAR"/>
+      <result  column="inDepartmentName" property="inDepartmentName" jdbcType="VARCHAR"/>
+      <result  column="inDepartmentCode" property="inDepartmentCode" jdbcType="VARCHAR"/>
+      <result  column="outDepartmentName" property="outDepartmentName" jdbcType="VARCHAR"/>
+      <result  column="outDepartmentCode" property="outDepartmentCode" jdbcType="VARCHAR"/>
+      <result  column="complication" property="complication" jdbcType="VARCHAR"/>
+      <result  column="hospitalId" property="hospitalId" jdbcType="VARCHAR"/>
+      <result  column="hospitalName" property="hospitalName" jdbcType="VARCHAR"/>
+      <result  column="endemicArea" property="endemicArea" jdbcType="VARCHAR"/>
+      <result  column="bedNum" property="bedNum" jdbcType="VARCHAR"/>
+      <result  column="doctorNo" property="doctorNo" jdbcType="VARCHAR"/>
+      <result  column="doctorName" property="doctorName" jdbcType="VARCHAR"/>
+      <result  column="medicalType" property="medicalType" jdbcType="VARCHAR"/>
+      <result  column="settlementType" property="settlementType" jdbcType="VARCHAR"/>
+      <result  column="socialInsurType" property="socialInsurType" jdbcType="VARCHAR"/>
+      <result  column="originalSocialInsurType" property="originalSocialInsurType" jdbcType="VARCHAR"/>
+      <result  column="inHospitalTimes" property="inHospitalTimes" jdbcType="VARCHAR"/>
+      <result  column="wardshipStartDate" property="wardshipStartDate" jdbcType="VARCHAR"/>
+      <result  column="wardshipEndDate" property="wardshipEndDate" jdbcType="VARCHAR"/>
+      <result  column="billType" property="billType" jdbcType="VARCHAR"/>
+      <result  column="settleDate" property="settleDate" jdbcType="VARCHAR"/>
+      <result  column="dischDate" property="dischDate" jdbcType="VARCHAR"/>
+      <result  column="dischCause" property="dischCause" jdbcType="VARCHAR"/>
+      <result  column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>
+      <result  column="updateDate" property="updateDate" jdbcType="VARCHAR"/>
+    </resultMap>
+      <sql id="Base_Column_List">
+       medicalNum,patientId,inHospitalNum,clinicDate,admissionDate,dischargeTime,hospitalizationDays,inDepartmentName,inDepartmentCode,outDepartmentName,outDepartmentCode,complication,hospitalId,hospitalName,endemicArea,bedNum,doctorNo,doctorName,medicalType,settlementType,socialInsurType,originalSocialInsurType,inHospitalTimes,wardshipStartDate,wardshipEndDate,billType,settleDate,dischDate,dischCause,updatedBy,updateDate
+      </sql>
+      
+      <select id="getMedicalNum"   resultMap="BaseResultMap" parameterType="java.lang.String">
+         select 
+          <include refid="Base_Column_List"/>
+            from hos_data.hospitalized_info
+          where medicalNum = #{medicalNum,jdbcType=VARCHAR}
+      </select>
+      
+      <select id="getHospitalizedByPatientIdToView" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from hos_data.view_hospitalized_info
+        where  patientId = #{arg0,jdbcType=VARCHAR}
+        and medicalNum = #{arg1,jdbcType=VARCHAR}
+      </select>
+    
+ </mapper>

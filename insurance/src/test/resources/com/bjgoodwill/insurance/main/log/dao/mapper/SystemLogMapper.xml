@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.main.log.dao.SysLogDao">
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.main.log.model.SystemLogModel" >
+		<result column="request_time_stamp" property="requestTimeStamp" jdbcType="VARCHAR" />
+		<result column="type" property="type"  />
+		<result column="status" property="status" />
+		<result column="model_id" property="modelId" jdbcType="VARCHAR" />
+		<result column="method_name" property="methodName" jdbcType="VARCHAR" />
+		<result column="exception_type" property="exceptionType" jdbcType="VARCHAR" />
+		<result column="friendly_code" property="friendlyCode" jdbcType="VARCHAR" />
+		<result column="friendly_message" property="friendlyMessage" jdbcType="VARCHAR" />
+		<result column="exception_message" property="exceptionMessage" jdbcType="VARCHAR" />
+		<result column="response_message" property="responseMessage" />
+		<result column="create_time" property="createTime" />
+    </resultMap>
+    <sql id="allColumn" >
+        request_time_stamp, type, status, model_id, method_name, exception_type, friendly_code, friendly_message, exception_message, response_message,create_time
+    </sql>
+    <insert id="insert" parameterType="com.bjgoodwill.insurance.main.log.model.SystemLogModel" useGeneratedKeys="true" keyProperty="id">
+    	insert into ins_log (
+		<include refid="allColumn" />
+		) values(#{requestTimeStamp},#{type},#{status},#{modelId},#{methodName},#{exceptionType},#{friendlyCode},#{friendlyMessage},#{exceptionMessage},#{responseMessage},#{createTime})
+    </insert>
+    
+    <select id="selectAll" parameterType="java.util.Map" resultMap="BaseResultMap">
+    	select * from ins_log where 1=1
+    	<if test="status!=null">
+          and status=#{status}
+          </if>
+          <if test="methodName!=null">
+          and method_name like '%#{methodName}%'
+          </if>
+          <if test="friendlyMessage!=null">
+          and friendly_message=#{friendlyMessage}
+          </if>
+          <if test="createTime!=null">
+          and create_time=#{createTime}
+          </if>
+          <if test="responseMessage!=null">
+          and response_message=#{responseMessage}
+          </if>
+    </select>
+</mapper>

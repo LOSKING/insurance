@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.record.dao.HospitalRecordHomePageDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.record.model.HospitalRecordHomePageModel" >
+		<result column="medicalNum" property="medicalNum" jdbcType="VARCHAR" />
+		<result column="hospitalRecordId" property="hospitalRecordId" jdbcType="VARCHAR" />
+		<result column="bah" property="bah" jdbcType="VARCHAR" />
+		<result column="confirmDate" property="confirmDate" jdbcType="VARCHAR" />
+		<result column="attendingPhysician" property="attendingPhysician" jdbcType="VARCHAR" />
+		<result column="complication" property="complication" jdbcType="VARCHAR" />
+		<result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
+		<result column="dischargeStatus" property="dischargeStatus" jdbcType="VARCHAR" />
+		<result column="medicationRecommendations" property="medicationRecommendations" jdbcType="VARCHAR" />
+		<result column="juniorCollege" property="juniorCollege" jdbcType="VARCHAR" />
+		<result column="auxiliaryExamination" property="auxiliaryExamination" jdbcType="VARCHAR" />
+		<result column="clinicalPath" property="clinicalPath" jdbcType="VARCHAR" />
+		<result column="totalRecordInfo" property="totalRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+    	medicalNum,hospitalRecordId,bah,confirmDate,attendingPhysician,complication,diagnosis,dischargeStatus,medicationRecommendations,juniorCollege,auxiliaryExamination,clinicalPath,totalRecordInfo
+    </sql>
+    <select id="getRecHomByHospitalRecordId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.record_homepage
+        where hospitalRecordId = #{hospitalRecordId,jdbcType=VARCHAR}
+    </select>
+    <select id="getRecHomByHospitalRecordIdToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.view_record_homepage
+        where hospitalRecordId = #{hospitalRecordId,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.record.dao.OperationRecordDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.record.model.OperationRecordModel" >
+		<result column="medicalNum" property="medicalNum" jdbcType="VARCHAR" />
+		<result column="hospitalRecordId" property="hospitalRecordId" jdbcType="VARCHAR" />
+		<result column="attendingPhysician" property="attendingPhysician" jdbcType="VARCHAR" />
+		<result column="dischargeStatus" property="dischargeStatus" jdbcType="VARCHAR" />
+		<result column="medicationRecommendations" property="medicationRecommendations" jdbcType="VARCHAR" />
+		<result column="juniorCollege" property="juniorCollege" jdbcType="VARCHAR" />
+		<result column="auxiliaryExamination" property="auxiliaryExamination" jdbcType="VARCHAR" />
+		<result column="clinicalPath" property="clinicalPath" jdbcType="VARCHAR" />
+		<result column="totalRecordInfo" property="totalRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+    	medicalNum,hospitalRecordId,attendingPhysician,dischargeStatus,medicationRecommendations,juniorCollege,auxiliaryExamination,clinicalPath,totalRecordInfo
+    </sql>
+    <select id="getRecOptByMedicalNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.record_operation_record_info
+        where medicalNum = #{medicalNum,jdbcType=VARCHAR}
+    </select>
+    <select id="getRecOptByMedicalNumToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.view_record_operation_record_info
+        where medicalNum = #{medicalNum,jdbcType=VARCHAR}
+    </select>
+</mapper>

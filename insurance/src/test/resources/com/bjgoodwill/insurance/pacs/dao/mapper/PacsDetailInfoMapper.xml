@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.pacs.dao.PacsDetailInfoDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.pacs.model.PacsDetailInfoModel" >
+        <id column="recordNum" property="recordNum" jdbcType="VARCHAR" />
+		<result column="itemNo" property="itemNo" jdbcType="VARCHAR" />
+		<result column="itemName" property="itemName" jdbcType="VARCHAR" />
+		<result column="itemContent" property="itemContent" jdbcType="VARCHAR" />
+		<result column="pnFlag" property="pnFlag" jdbcType="VARCHAR" />
+		<result column="reference" property="reference" jdbcType="VARCHAR" />
+		<result column="additionVal" property="additionVal" jdbcType="VARCHAR" />
+		<result column="numVal" property="numVal" jdbcType="VARCHAR" />
+		<result column="txtVal" property="txtVal" jdbcType="VARCHAR" />
+		<result column="insertFlag" property="insertFlag" jdbcType="VARCHAR" />
+		<result column="method1" property="method1" jdbcType="VARCHAR" />
+		<result column="method2" property="method2" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        recordNum, itemNo, itemName, itemContent, pnFlag, reference, additionVal, numVal,txtVal, insertFlag, method1, method2
+    </sql>
+    
+    <select id="getPacsDetailInfoByRecordNumToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_pacs_detail_info
+        where recordNum = #{id,jdbcType=VARCHAR}
+    </select>
+</mapper>

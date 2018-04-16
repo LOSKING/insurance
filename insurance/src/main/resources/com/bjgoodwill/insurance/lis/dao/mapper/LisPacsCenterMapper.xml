@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.lis.dao.LisPacsCenterDao" >
+	<resultMap id="SimpleResultMap" type="com.bjgoodwill.insurance.lis.model.LisPacsCenterModel" >
+        <id column="patientId" property="patientId" jdbcType="VARCHAR" />
+		<result column="medicalNum" property="medicalNum" jdbcType="VARCHAR" />
+		<result column="medicalType" property="medicalType" jdbcType="VARCHAR" />
+		<result column="serviceClassification" property="serviceClassification" jdbcType="VARCHAR" />
+		<result column="labNum" property="labNum" jdbcType="VARCHAR" />
+		<result column="recordNum" property="recordNum" jdbcType="VARCHAR" />
+		
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        patientId, medicalNum, medicalType, serviceClassification, labNum, recordNum
+    </sql>
+    
+    <select id="getLisPacsCenterByPatientIdToView" resultMap="SimpleResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_lis_pacs_center
+        where patientId = #{id,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getLisPacsCenterByMedicalNumMedicalType" resultMap="SimpleResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_lis_pacs_center
+        where medicalNum = #{arg0,jdbcType=VARCHAR}
+        and medicalType = #{arg1,jdbcType=VARCHAR}
+    </select>
+</mapper>

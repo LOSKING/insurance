@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.outpatient.dao.OutpatientDao">
+  
+   <resultMap  id="BaseResultMap" type="com.bjgoodwill.insurance.outpatient.model.OutpatientModel">
+      <result  column="medicalNum" property="medicalNum" jdbcType="VARCHAR"/>  
+      <result  column="outPatientNum" property="outPatientNum" jdbcType="VARCHAR"/>  
+      <result  column="patientId" property="patientId" jdbcType="VARCHAR"/>  
+      <result  column="clinicDate" property="clinicDate" jdbcType="VARCHAR"/>  
+      <result  column="hospitalId" property="hospitalId" jdbcType="VARCHAR"/>  
+      <result  column="hospitalName" property="hospitalName" jdbcType="VARCHAR"/>  
+      <result  column="departmentName" property="departmentName" jdbcType="VARCHAR"/>  
+      <result  column="departmentCode" property="departmentCode" jdbcType="VARCHAR"/>  
+      <result  column="endemicArea" property="endemicArea" jdbcType="VARCHAR"/>  
+      <result  column="doctorNo" property="doctorNo" jdbcType="VARCHAR"/>  
+      <result  column="doctorName" property="doctorName" jdbcType="VARCHAR"/>  
+      <result  column="medicalType" property="medicalType" jdbcType="VARCHAR"/>  
+      <result  column="settlementType" property="settlementType" jdbcType="VARCHAR"/>  
+      <result  column="socialInsurType" property="socialInsurType" jdbcType="VARCHAR"/>  
+      <result  column="originalSocialInsurType" property="originalSocialInsurType" jdbcType="VARCHAR"/>  
+      <result  column="ticketDate" property="ticketDate" jdbcType="VARCHAR"/>  
+      <result  column="updatedBy" property="updatedBy" jdbcType="VARCHAR"/>  
+      <result  column="updateDate" property="updateDate" jdbcType="VARCHAR"/> 
+      <result  column="specialDiseases" property="specialDiseases" jdbcType="VARCHAR"/>  
+   </resultMap>
+   
+    <sql id="Base_Column_List">
+      medicalNum,outPatientNum,patientId,clinicDate,hospitalId,hospitalName,departmentName,departmentCode,endemicArea,doctorNo,doctorName,medicalType,settlementType,socialInsurType,originalSocialInsurType,ticketDate,updatedBy,updateDate,specialDiseases
+    </sql>
+    
+    <select id="getMedicalNum" resultMap="BaseResultMap" parameterType="java.lang.String">
+       select
+       <include refid="Base_Column_List"/>
+       from hos_data.outpatient_info
+       
+       where medicalNum = #{medicalNum ,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getOutpatientByPatientIdToView" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from hos_data.view_outpatient_info
+        where  patientId = #{arg0,jdbcType=VARCHAR}
+        and medicalNum = #{arg1,jdbcType=VARCHAR}
+    </select>
+</mapper>

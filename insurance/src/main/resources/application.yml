@@ -1,0 +1,47 @@
+#关于服务端配置
+server:
+  port: 8090
+
+spring:
+  profiles:
+    #指定读取配置文件:dev(开发环境),prod(生产环境),qa(测试环境)
+    active: dev
+  datasource:
+   main: 
+      driverClassName: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.7.69:3306/insurance?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: insurance2018
+      password: 9ol.*IK<
+      
+   view:
+      # mysql begin ##############################
+      driverClassName: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.7.69:3306/hos_data?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: insurance2018
+      password: 9ol.*IK<
+      # mysql end ################################
+      # mssql begin (SQL Server 2008R2测试通过) ##############################
+#      driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver 
+#      url: jdbc:sqlserver://192.168.122.121:1433;DatabaseName=hos_data
+#      username: sa
+#      password: sa
+      # mssql end ################################
+      
+      # oracle begin (Oracle 11g测试通过) ##############################
+#      driverClassName: oracle.jdbc.OracleDriver 
+#      url: jdbc:oracle:thin:@192.168.122.121:1521:orcl
+#      username: insurance2018
+#      password: 9ol.*IK<      
+      # oracle end ##############################
+      
+  thymeleaf:
+      prefix: /WEB-INF/view/
+      mode: LEGACYHTML5
+      suffix: .html
+      encoding: UTF-8
+      cache: false
+      
+
+mybatis: 
+    mapperLocations: classpath:com/bjgoodwill/insurance/**/*.xml
+    type-aliases-package: com.bjgoodwill.insurance..model

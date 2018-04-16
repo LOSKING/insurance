@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.fee.dao.MedicalInsurancePayDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.fee.model.MedicalInsurancePayModel" >
+        <id column="healthNum" property="healthNum" jdbcType="VARCHAR" />
+		<result column="invoiceTotalAmount" property="invoiceTotalAmount" jdbcType="VARCHAR" />
+		<result column="selfFeeTotalAmount" property="selfFeeTotalAmount" jdbcType="VARCHAR" />
+		<result column="selfPayTotalAmount" property="selfPayTotalAmount" jdbcType="VARCHAR" />
+		<result column="outsideMedicalInsuranceTotalAmount" property="outsideMedicalInsuranceTotalAmount" jdbcType="VARCHAR" />
+		<result column="perBearMoney" property="perBearMoney" jdbcType="VARCHAR" />
+		<result column="medicareFundCost" property="medicareFundCost" jdbcType="VARCHAR" />
+		<result column="priorBurdenMoney" property="priorBurdenMoney" jdbcType="VARCHAR" />
+		<result column="fundPaymentAmount" property="fundPaymentAmount" jdbcType="VARCHAR" />
+		<result column="sectionCoordinatePayMoney" property="sectionCoordinatePayMoney" jdbcType="VARCHAR" />
+		<result column="overCappingPayMoney" property="overCappingPayMoney" jdbcType="VARCHAR" />
+		<result column="largePaymentAmount" property="largePaymentAmount" jdbcType="VARCHAR" />
+		<result column="additionalPayment" property="additionalPayment" jdbcType="VARCHAR" />
+		<result column="hospitalCost" property="hospitalCost" jdbcType="VARCHAR" />
+		<result column="medicarePayLine" property="medicarePayLine" jdbcType="VARCHAR" />
+		<result column="accountFundMoney" property="accountFundMoney" jdbcType="VARCHAR" />
+		<result column="individualPayment" property="individualPayment" jdbcType="VARCHAR" />
+		<result column="individualCashPayment" property="individualCashPayment" jdbcType="VARCHAR" />
+		<result column="yearAccountRemainAmount" property="yearAccountRemainAmount" jdbcType="VARCHAR" />
+		<result column="previousAccountRemainAmount" property="previousAccountRemainAmount" jdbcType="VARCHAR" />
+		<result column="notifyInfo" property="notifyInfo" jdbcType="VARCHAR" />
+		<result column="afterRoundingAmount" property="afterRoundingAmount" jdbcType="VARCHAR" />
+		<result column="medicarePayLineToLimitLine" property="medicarePayLineToLimitLine" jdbcType="VARCHAR" />
+		<result column="inInsureMoney" property="inInsureMoney" jdbcType="VARCHAR" />
+		<result column="hosBearMoney" property="hosBearMoney" jdbcType="VARCHAR" />
+		<result column="civilServantFundMoney" property="civilServantFundMoney" jdbcType="VARCHAR" />
+		<result column="seriousFundMoney" property="seriousFundMoney" jdbcType="VARCHAR" />
+		<result column="civilSubsidy" property="civilSubsidy" jdbcType="VARCHAR" />
+		<result column="otherFundPayment" property="otherFundPayment" jdbcType="VARCHAR" />
+		<result column="limitLineToLargePayment" property="limitLineToLargePayment" jdbcType="VARCHAR" />
+		
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        healthNum, invoiceTotalAmount, selfFeeTotalAmount, selfPayTotalAmount, outsideMedicalInsuranceTotalAmount,
+        perBearMoney, medicareFundCost, priorBurdenMoney,fundPaymentAmount, sectionCoordinatePayMoney,overCappingPayMoney,
+        largePaymentAmount,additionalPayment,hospitalCost,medicarePayLine,accountFundMoney,individualPayment,individualCashPayment,
+        yearAccountRemainAmount,previousAccountRemainAmount,notifyInfo,afterRoundingAmount,medicarePayLineToLimitLine,inInsureMoney,
+        hosBearMoney,civilServantFundMoney,seriousFundMoney,civilSubsidy,otherFundPayment,limitLineToLargePayment
+         
+    </sql>
+    
+    <select id="getByHealthNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.fee_medical_insurancepay_info
+        where healthNum = #{healthNum,jdbcType=VARCHAR}
+    </select>
+    <select id="getByMedicalItemCatIDToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.view_medical_insurancepay_info
+        where healthNum = #{healthNum,jdbcType=VARCHAR}
+    </select>
+</mapper>

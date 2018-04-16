@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.record.dao.OperationDetailedInfoDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.record.model.OperationDetailedInfoModel" >
+		<result column="medicalNum" property="medicalNum" jdbcType="VARCHAR" />
+		<result column="hospitalRecordId" property="hospitalRecordId" jdbcType="VARCHAR" />
+		<result column="operationStartTime" property="operationStartTime" jdbcType="VARCHAR" />
+		<result column="operationEndTime" property="operationEndTime" jdbcType="VARCHAR" />
+		<result column="preoperativeDiagnosisCode" property="preoperativeDiagnosisCode" jdbcType="VARCHAR" />
+		<result column="preoperativeDiagnosisName" property="preoperativeDiagnosisName" jdbcType="VARCHAR" />
+		<result column="intraoperativeDiagnosisCode" property="intraoperativeDiagnosisCode" jdbcType="VARCHAR" />
+		<result column="intraoperativeDiagnosisName" property="intraoperativeDiagnosisName" jdbcType="VARCHAR" />
+		<result column="operationCode" property="operationCode" jdbcType="VARCHAR" />
+		<result column="operationName" property="operationName" jdbcType="VARCHAR" />
+		<result column="operationSite" property="operationSite" jdbcType="VARCHAR" />
+		<result column="operationLevelName" property="operationLevelName" jdbcType="VARCHAR" />
+		<result column="operationIncisionCategory" property="operationIncisionCategory" jdbcType="VARCHAR" />
+		<result column="anesthesiaMethodName" property="anesthesiaMethodName" jdbcType="VARCHAR" />
+		<result column="doctorName" property="doctorName" jdbcType="VARCHAR" />
+		<result column="assistantDoctorName" property="assistantDoctorName" jdbcType="VARCHAR" />
+		<result column="operationProcess" property="operationProcess" jdbcType="VARCHAR" />
+		<result column="totalOperationRecordInfo" property="totalOperationRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+    	medicalNum,hospitalRecordId,operationStartTime,operationEndTime,preoperativeDiagnosisCode,preoperativeDiagnosisName,intraoperativeDiagnosisCode,intraoperativeDiagnosisName,operationCode,operationName,operationSite,operationLevelName,operationIncisionCategory,anesthesiaMethodName,doctorName,assistantDoctorName,operationProcess,totalOperationRecordInfo
+    </sql>
+     <select id="getRecOptDetByMedicalNum" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.record_operation_detail_info
+        where medicalNum = #{medicalNum,jdbcType=VARCHAR}
+    </select>
+     <select id="getRecOptDetByMedicalNumToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from hos_data.view_record_operation_detail_info
+        where medicalNum = #{medicalNum,jdbcType=VARCHAR}
+    </select>
+</mapper>

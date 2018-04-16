@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.patient.dao.DiagnosiDao">
+ <resultMap  id="BaseResultMap" type="com.bjgoodwill.insurance.patient.model.DiagnosisModel">
+     <result column="medicalNum" property="medicalNum" jdbcType="VARCHAR"/>
+     <result column="patientId" property="patientId" jdbcType="VARCHAR"/>
+     <result column="code" property="code" jdbcType="VARCHAR"/>  
+     <result column="icd" property="icd" jdbcType="VARCHAR"/>
+     <result column="name" property="name" jdbcType="VARCHAR"/>
+     <result column="sort" property="sort" jdbcType="VARCHAR"/>
+     <result column="description" property="description" jdbcType="VARCHAR"/>
+     <result column="inHosDiagnoseType" property="inHosDiagnoseType" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    medicalNum,patientId,code,icd,name,sort,description,inHosDiagnoseType
+  </sql>
+  
+   <select id="getDinMedicalNum" resultMap="BaseResultMap" parameterType="java.lang.String">
+     select 
+     <include refid="Base_Column_List"/>
+     from hos_data.diagnosis_info
+     where medicalNum = #{medicalNum,jdbcType=VARCHAR}
+   </select>
+ </mapper>

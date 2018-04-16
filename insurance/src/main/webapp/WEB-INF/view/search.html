@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+ <head>
+		<meta charset="UTF-8">
+        <title>日志查看</title>
+<link th:href="@{/static/css/application.css}" rel="stylesheet">
+<script th:src="@{/static/js/application.js}"></script>
+<script th:src="@{/static/js/jquery-2.0.0.min.js}"></script>
+<link rel="stylesheet" type="text/css" href="EasyUI/easyui.css" />
+<script type="text/javascript" src="EasyUI/jquery.min.js"></script>
+<script type="text/javascript" src="EasyUI/jquery.easyui.min.js"></script>
+  
+ <script type="text/javascript">
+   
+   
+   /*下拉菜单  */
+        $(function () {
+            $('#ddlLine').combotree({
+                valueField: "id", //Value字段
+                textField: "text", //Text字段
+                multiple: true,
+                data: [{ "id": 1, "text": "All", "children": [{ "id": 2, "text": "患者ID" }, { "id": 3, "text": "状态" }, { "id": 4, "text": "参数方法"},{ "id": 5, "text": "时间" }]}]
+,
+                //                url: "tree_data2.json", //数据源
+                onCheck: function (node, checked) {
+                    //让全选不显示
+                    $("#ddlLine").combotree("setText", $("#ddlLine").combobox("getText").toString().replace("All,", ""));
+                },
+                onSelect:function(node){
+                	if(node.id != 5){
+                		return;
+                	} 
+                }
+            });
+            
+        })
+        
+        //按钮
+      $(document).ready(function(){
+		  $("#bnid").click(function(){
+		       var t = $("#ddlLine").combotree("getText");
+		       var jsonobj = {
+		    		   search : t
+		       }
+		       var data = JSON.stringify(jsonobj);
+		       
+		       alert(data);
+		       $ajax{
+		    	   type: 'GET', //请求方式
+		    	   url: '',
+		    	   date:{
+		    		   
+		    	   },
+		    	   
+		    		   
+		       }
+		       })
+       })
+    </script>
+   
+     <style type="text/css">
+	    form { float: right}
+
+	</style>
+  </head>
+<body>
+
+<table width="100%"  style="background-color: white">
+  
+    <!--第一部分  -->
+		<tr>
+		  <td colspan="2"  style="background-color: white;">
+		     <img alt="" src="static/image/logo.jpeg">
+		  </td>
+		</tr>
+	<!--第二部分  -->
+		<tr >
+		  <td style="background-color:white;width:12%;vertical-align:top;">
+		  
+			  <b>菜单</b><br>
+				 HTML<br>
+				 CSS<br>
+				 JavaScript
+		  </td>
+		  <td style="background-color:white;height:500px;width:400px;vertical-align:top;" >
+				<br />
+					<!--查询表单  -->
+					<form action="" >
+					        <!--时间插件  -->
+                          <input type="datetime-local">
+                            <!--下拉框  -->
+					      <select id="ddlLine"   class="easyui-combotree" style="width: 205px; height: 24px;"></select>
+				            <!--按钮  -->
+				          <input type="button" value="Search" style="height:40px;width:70px;"  id="bnid" />
+		           </form>
+			            <br/>
+			            <br/>
+			            <br/>  
+			            <br/>  
+		           <table style="margin-left: 0px;" border="1" class="tableLine DoubleColorTable">
+		              <tr>
+		                <td>状态</td>
+		                <td>模块ID</td>
+		                <td>友好异常信息</td>
+		                <td>日志记录时间</td>
+		                <td>院端返回报文</td>
+		              </tr>
+		           </table>
+				</td>
+		</tr>
+
+      <!--第三部分  -->
+		<tr>
+			<td colspan="2" style="background-color:white; height: 100px" width="100%">
+			    <table style="text-align: right;">
+			       <tr>
+			          <td>版权所有© 北京嘉和美康信息技术有限公司</td>
+			       </tr>
+			       <tr>
+			          <td>关于嘉和</td>
+			          <td>|</td>
+			          <td>使用条款</td>
+			          <td>|</td>
+			          <td>隐私条约</td>
+			          <td>|</td>
+			          <td>网站反馈</td>
+			          <td>|</td>
+			          <td>联系合作</td>
+			          <td>|</td>
+			          <td>联系我们</td>
+			       </tr>
+			    </table>
+			</td>
+		</tr>
+</table>
+</body>
+
+</html>

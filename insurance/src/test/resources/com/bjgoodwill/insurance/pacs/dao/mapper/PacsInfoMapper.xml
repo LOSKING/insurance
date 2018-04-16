@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjgoodwill.insurance.pacs.dao.PacsInfoDao" >
+	<resultMap id="BaseResultMap" type="com.bjgoodwill.insurance.pacs.model.PacsInfoModel" >
+        <id column="recordNum" property="recordNum" jdbcType="VARCHAR" />
+		<result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+		<result column="categoryCode" property="categoryCode" jdbcType="VARCHAR" />
+		<result column="inspectionItem" property="inspectionItem" jdbcType="VARCHAR" />
+		<result column="inspectionPart" property="inspectionPart" jdbcType="VARCHAR" />
+		<result column="findings" property="findings" jdbcType="VARCHAR" />
+		<result column="inspectExamResult" property="inspectExamResult" jdbcType="VARCHAR" />
+		<result column="inspectImpression" property="inspectImpression" jdbcType="VARCHAR" />
+		<result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
+		<result column="clinicalDiagnosis" property="clinicalDiagnosis" jdbcType="VARCHAR" />
+		<result column="departmentCode" property="departmentCode" jdbcType="VARCHAR" />
+		<result column="departmentName" property="departmentName" jdbcType="VARCHAR" />
+		<result column="doctorNo" property="doctorNo" jdbcType="VARCHAR" />
+		<result column="doctorName" property="doctorName" jdbcType="VARCHAR" />
+		<result column="applyDate" property="applyDate" jdbcType="VARCHAR" />
+		<result column="reportDate" property="reportDate" jdbcType="VARCHAR" />
+		<result column="confirmDate" property="confirmDate" jdbcType="VARCHAR" />
+		<result column="sampleNo" property="sampleNo" jdbcType="VARCHAR" />
+		<result column="reportDoctorCode" property="reportDoctorCode" jdbcType="VARCHAR" />
+		<result column="reportDoctorName" property="reportDoctorName" jdbcType="VARCHAR" />
+		<result column="confirmDoctorCode" property="confirmDoctorCode" jdbcType="VARCHAR" />
+		<result column="confirmDoctorName" property="confirmDoctorName" jdbcType="VARCHAR" />
+		<result column="instrna" property="instrna" jdbcType="VARCHAR" />
+		<result column="instrKind" property="instrKind" jdbcType="VARCHAR" />
+		<result column="instrKindName" property="instrKindName" jdbcType="VARCHAR" />
+		<result column="effectiveMark" property="effectiveMark" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="totalRecordInfo" property="totalRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="SimpleResultMap" type="com.bjgoodwill.insurance.pacs.model.PacsInfoModel" >
+        <id column="recordNum" property="recordNum" jdbcType="VARCHAR" />
+		<result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+		<result column="categoryCode" property="categoryCode" jdbcType="VARCHAR" />
+		<result column="inspectionItem" property="inspectionItem" jdbcType="VARCHAR" />
+		<result column="inspectionPart" property="inspectionPart" jdbcType="VARCHAR" />
+		<result column="findings" property="findings" jdbcType="VARCHAR" />
+		<result column="inspectExamResult" property="inspectExamResult" jdbcType="VARCHAR" />
+		<result column="inspectImpression" property="inspectImpression" jdbcType="VARCHAR" />
+		<result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
+		<result column="clinicalDiagnosis" property="clinicalDiagnosis" jdbcType="VARCHAR" />
+		<result column="departmentCode" property="departmentCode" jdbcType="VARCHAR" />
+		<result column="departmentName" property="departmentName" jdbcType="VARCHAR" />
+		<result column="doctorNo" property="doctorNo" jdbcType="VARCHAR" />
+		<result column="doctorName" property="doctorName" jdbcType="VARCHAR" />
+		<result column="applyDate" property="applyDate" jdbcType="VARCHAR" />
+		<result column="reportDate" property="reportDate" jdbcType="VARCHAR" />
+		<result column="confirmDate" property="confirmDate" jdbcType="VARCHAR" />
+		<result column="sampleNo" property="sampleNo" jdbcType="VARCHAR" />
+		<result column="reportDoctorCode" property="reportDoctorCode" jdbcType="VARCHAR" />
+		<result column="reportDoctorName" property="reportDoctorName" jdbcType="VARCHAR" />
+		<result column="confirmDoctorCode" property="confirmDoctorCode" jdbcType="VARCHAR" />
+		<result column="confirmDoctorName" property="confirmDoctorName" jdbcType="VARCHAR" />
+		<result column="instrna" property="instrna" jdbcType="VARCHAR" />
+		<result column="instrKind" property="instrKind" jdbcType="VARCHAR" />
+		<result column="instrKindName" property="instrKindName" jdbcType="VARCHAR" />
+		<result column="effectiveMark" property="effectiveMark" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="totalRecordInfo" property="totalRecordInfo" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        t1.recordNum, categoryName, categoryCode, inspectionItem, inspectionPart, findings, inspectExamResult, inspectImpression,diagnosis, clinicalDiagnosis, departmentCode, departmentName, doctorNo, doctorName,applyDate, reportDate,confirmDate, sampleNo, reportDoctorCode, reportDoctorName, confirmDoctorCode, confirmDoctorName, instrna, instrKind, effectiveMark, remark, totalRecordInfo
+    </sql>
+    
+    <select id="getPacsInfoByRecordNumToView" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_pacs_info t1
+        where recordNum = #{id,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getPacsInfoByPatientId" resultMap="SimpleResultMap" parameterType="java.lang.String" >
+        select 
+        <include refid="Base_Column_List" />
+        from view_pacs_info t1,view_lis_pacs_center t2
+        where patientId = #{id,jdbcType=VARCHAR}
+        and t1.recordNum = t2.recordNum
+    </select>
+</mapper>
